@@ -89,7 +89,7 @@ pipeline {
     }
     post {
         always {
-            step([$class: 'Mailer', notifyEveryUnstableBuild: true, recipients: 'notify@me', sendToIndividuals: false])
+//            step([$class: 'Mailer', notifyEveryUnstableBuild: true, recipients: 'notify@me', sendToIndividuals: false])
         }
     }
 }
