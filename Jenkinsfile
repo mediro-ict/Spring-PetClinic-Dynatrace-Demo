@@ -7,14 +7,7 @@ def tagMatchRules = [
                         [meType: 'SERVICE']
                 ],
                 tags   : [
-                        [context: 'CONTEXTLESS', key: 'Tomcat/localhost']
-                ]
-        ], [
-                meTypes: [
-                        [meType: 'SERVICE']
-                ],
-                tags   : [
-                        [context: 'CONTEXTLESS', key: 'Tomcat/localhost']
+                        [context: 'CONTEXTLESS', key: 'app', value = 'testvalue']
                 ]
         ]
 ]
