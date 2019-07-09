@@ -88,11 +88,12 @@ pipeline {
         }
         stage('Docker Push') {
             steps {
-                script {
+                 echo 'Docker Push!'
+              /**  script {
                     docker.withRegistry('', registryCredential) {
                         dockerImage.push()
                     }
-                }
+                } **/
             }
         }
         stage('deploy to Production') {
