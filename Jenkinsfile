@@ -61,7 +61,11 @@ pipeline {
         stage('Deploy to Staging Server') {
             steps {
              //   createDynatraceDeploymentEvent(envId: 'cloud', tagMatchRules: tagMatchRules) {
-                 createDynatraceDeploymentEvent(entityIds: [[$class: 'Application', entityId: 'APPLICATION-EA7C4B59F27D43EB']], envId: 'cloud', tagMatchRules: [[meTypes: [[meType: 'SERVICE']], tags: [[context: 'CONTEXTLESS', key: 'app', value: '"test"']]]]) {
+                 createDynatraceDeploymentEvent(entityIds: 
+                 [
+                     [$class: 'Application', entityId: 'APPLICATION-EA7C4B59F27D43EB']
+                     
+                     ], envId: 'cloud', tagMatchRules: [[meTypes: [[meType: 'SERVICE']], tags: [[context: 'CONTEXTLESS', key: 'app', value: '"test"']]]]) {
     // some block
                  
                     sh 'docker-compose down'
@@ -71,7 +75,7 @@ pipeline {
         }
         stage('Performance Test') {
             steps {
-                recordDynatraceSession([[$class: 'Application', entityId: 'APPLICATION-EA7C4B59F27D43EB']],envId: 'cloud', testCase: 'loadtest', tagMatchRules: [[meTypes: [[meType: 'SERVICE']], tags: [[context: 'CONTEXTLESS', key: 'app', value: '"test"']]]]) {
+                recordDynatraceSession(entityIds: [[$class: 'Application', entityId: 'APPLICATION-EA7C4B59F27D43EB'], [$class: 'Service', entityId: 'SERVICE-6D8644AEFD7A7A5D']], envId: 'cloud', testCase: 'loadtest') {
                     performanceTest(readFile('performanceTest.json'))
                 }
                 perfSigDynatraceReports envId: 'cloud', specFile: 'specfile.json', nonFunctionalFailure: 2
