@@ -54,7 +54,7 @@ pipeline {
         stage('Docker Build') {
             steps {
                 script {
-                    dockerImage = docker.build('spring-petclinic:latest')
+                    dockerImage = docker.build('leonvzd/spring-petclinic:latest')
                 }
             }
         }
