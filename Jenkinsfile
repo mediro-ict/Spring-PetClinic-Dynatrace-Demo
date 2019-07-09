@@ -71,7 +71,7 @@ pipeline {
         }
         stage('Performance Test') {
             steps {
-                recordDynatraceSession(envId: 'cloud', testCase: 'loadtest', tagMatchRules: tagMatchRules) {
+                recordDynatraceSession([[$class: 'Application', entityId: 'APPLICATION-EA7C4B59F27D43EB']],envId: 'cloud', testCase: 'loadtest', tagMatchRules: tagMatchRules) {
                     performanceTest(readFile('performanceTest.json'))
                 }
                 perfSigDynatraceReports envId: 'cloud', specFile: 'specfile.json', nonFunctionalFailure: 2
