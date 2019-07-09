@@ -7,9 +7,18 @@ def tagMatchRules = [
                         [meType: 'SERVICE']
                 ],
                 tags   : [
-                        [context: 'CONTEXTLESS', key: 'app', value = 'testvalue']
+                        [context: 'CONTEXTLESS', key: 'Frontend']
+                ]
+        ], [
+                meTypes: [
+                        [meType: 'SERVICE']
+                ],
+                tags   : [
+                        [context: 'CONTEXTLESS', key: 'Database']
                 ]
         ]
+
+        
 ]
 
 pipeline {
@@ -51,7 +60,10 @@ pipeline {
         }
         stage('Deploy to Staging Server') {
             steps {
-                createDynatraceDeploymentEvent(envId: 'cloud', tagMatchRules: tagMatchRules) {
+             //   createDynatraceDeploymentEvent(envId: 'cloud', tagMatchRules: tagMatchRules) {
+                 createDynatraceDeploymentEvent(entityIds: [[$class: 'Application', entityId: 'APPLICATION-EA7C4B59F27D43EB']], envId: 'cloud', tagMatchRules: [[meTypes: [[meType: 'SERVICE']], tags: [[context: 'CONTEXTLESS', key: 'app', value: '"test"']]]]) {
+    // some block
+                 
                     sh 'docker-compose down'
                     sh 'docker-compose up -d'
                 }
