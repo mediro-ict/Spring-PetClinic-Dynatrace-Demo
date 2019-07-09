@@ -58,10 +58,10 @@ pipeline {
         }
         stage('Deploy to Staging Server') {
             steps {
-                createDynatraceDeploymentEvent(envId: 'Dynatrace Demo Environment', tagMatchRules: tagMatchRules) {
+//                createDynatraceDeploymentEvent(envId: 'Dynatrace Demo Environment', tagMatchRules: tagMatchRules) {
                     sh 'docker-compose down'
                     sh 'docker-compose up -d'
-                }
+//                }
             }
         }
         stage('Performance Test') {
