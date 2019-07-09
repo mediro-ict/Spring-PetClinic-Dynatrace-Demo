@@ -22,6 +22,11 @@ def tagMatchRules = [
 ]
 
 pipeline {
+    environment {
+    registry = "leonvzd/spring-petclinic:latest"
+    registryCredential = 'dockerHubCredentials'
+    dockerImage = ''
+  }
     agent {
         label 'docker'
     }
@@ -54,7 +59,7 @@ pipeline {
         stage('Docker Build') {
             steps {
                 script {
-                    dockerImage = docker.build('leonvzd/spring-petclinic:latest')
+                    dockerImage = docker.build registry
                 }
             }
         }
@@ -84,8 +89,8 @@ pipeline {
         stage('Docker Push') {
             steps {
                 script {
-                    docker.withRegistry('', 'dockerHubCredentials') {
-                        dockerImage.push('latest')
+                    docker.withRegistry('', registryCredential) {
+                        dockerImage.push()
                     }
                 }
             }

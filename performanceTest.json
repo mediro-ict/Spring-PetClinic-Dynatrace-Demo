@@ -14,7 +14,7 @@
       "SUT_Host": "localhost",
       "SUT_Port": 8080,
       "SUT_URL": "/",
-      "additionalParameter": "-JDuration=600"
+      "additionalParameter": "-JDuration=1200"
     }
   }
 }
