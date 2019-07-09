@@ -58,18 +58,18 @@ pipeline {
         }
         stage('Deploy to Staging Server') {
             steps {
-//                createDynatraceDeploymentEvent(envId: 'Dynatrace Demo Environment', tagMatchRules: tagMatchRules) {
+                createDynatraceDeploymentEvent(envId: 'cloud', tagMatchRules: tagMatchRules) {
                     sh 'docker-compose down'
                     sh 'docker-compose up -d'
-//                }
+                }
             }
         }
         stage('Performance Test') {
             steps {
-                recordDynatraceSession(envId: 'Dynatrace Demo Environment', testCase: 'loadtest', tagMatchRules: tagMatchRules) {
+                recordDynatraceSession(envId: 'cloud', testCase: 'loadtest', tagMatchRules: tagMatchRules) {
                     performanceTest(readFile('performanceTest.json'))
                 }
-                perfSigDynatraceReports envId: 'Dynatrace Demo Environment', specFile: 'specfile.json', nonFunctionalFailure: 2
+                perfSigDynatraceReports envId: 'cloud', specFile: 'specfile.json', nonFunctionalFailure: 2
             }
         }
         stage('Docker Push') {
