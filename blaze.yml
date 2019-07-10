@@ -4,7 +4,7 @@ execution:
   concurrency: 1
   ramp-up: 2s
   scenario:
-    script: src/jmeter/petclinic_test_plan.jmx
+    script: /home/leonvz/jenkins/workspace/Discovery-poc/src/jmeter/petclinic_test_plan.jmx
 reporting:
 - module: final-stats
   dump-xml: stats.xml
