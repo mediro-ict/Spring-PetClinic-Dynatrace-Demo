@@ -81,7 +81,8 @@ pipeline {
         stage('Performance Test') {
             steps {
                 recordDynatraceSession(entityIds: [[$class: 'Application', entityId: 'APPLICATION-EA7C4B59F27D43EB'], [$class: 'Service', entityId: 'SERVICE-6D8644AEFD7A7A5D']], envId: 'cloud', testCase: 'loadtest') {
-                    performanceTest(readFile('performanceTest.json'))
+                //    performanceTest(readFile('performanceTest.json'))
+                     bzt "blaze.yml"
                 }
                 perfSigDynatraceReports envId: 'cloud', specFile: 'specfile.json', nonFunctionalFailure: 2
             }
