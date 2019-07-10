@@ -69,7 +69,7 @@ pipeline {
                     createDynatraceDeploymentEvent(entityIds:[[$class: 'Service']],envId: 'cloud', tagMatchRules: [[meTypes: [[meType: 'SERVICE']], tags: [[context: 'CONTEXTLESS', key: 'Frontend']]], [meTypes: [[meType: 'SERVICE']], tags: [[context: 'CONTEXTLESS', key: 'Database']]]]) {
                         sh 'docker-compose down'
                         sh 'docker-compose up -d'
-    
+                    }
            
             }
         }
