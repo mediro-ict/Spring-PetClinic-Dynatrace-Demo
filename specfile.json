@@ -26,8 +26,8 @@
     {
       "timeseriesId": "com.dynatrace.builtin:service.failurerate",
       "aggregation": "avg",
-      "lowerLimit": 35,
-      "upperLimit": 40
+      "lowerLimit": 0,
+      "upperLimit": 35
     },
     {
       "timeseriesId": "com.dynatrace.builtin:service.requestspermin",
