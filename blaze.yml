@@ -1,7 +1,7 @@
 
 execution:
 - iterations: 3
-  concurrency: 50
+  concurrency: 100
   ramp-up: 2s
   scenario:
     script: /home/leonvz/jenkins/workspace/Discovery-poc/src/test/jmeter/petclinic_test_plan.jmx
