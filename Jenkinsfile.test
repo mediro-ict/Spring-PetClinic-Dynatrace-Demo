@@ -1,6 +1,80 @@
 #!/usr/bin/env groovy
 def dockerImage
 
+def specfile = '\{
+ \"lowerLimit\": 1,
+ \"upperLimit\": 4,
+ \"_comment\": \"global configuration environment-wide\",
+ \"timeseries\": [
+   \{
+     \"timeseriesId\": \"com.dynatrace.builtin:service.responsetime\",
+     \"aggregation\": \"avg\",
+     \"tags\": \"Frontend\",
+     \"lowerLimit\": 250000,
+     \"upperLimit\": 1000000
+   },
+   \{
+     \"timeseriesId\": \"com.dynatrace.builtin:service.responsetime\",
+     \"aggregation\": \"avg\",
+     \"entityIds\": \"SERVICE-72ED3879808ABAA1\",
+     \"lowerLimit\": 4000000,
+     \"upperLimit\": 8000000
+   },
+   \{
+     \"timeseriesId\": \"com.dynatrace.builtin:docker.container.cpu\",
+     \"aggregation\": \"avg\",
+     \"lowerLimit\": 50,
+     \"upperLimit\": 70
+   },
+   \{
+     \"timeseriesId\": \"com.dynatrace.builtin:service.failurerate\",
+     \"aggregation\": \"avg\",
+     \"lowerLimit\": 0,
+     \"upperLimit\": 35
+   },
+   \{
+     \"timeseriesId\": \"com.dynatrace.builtin:service.requestspermin\",
+     \"aggregation\": \"min\",
+     \"lowerLimit\": 5,
+     \"upperLimit\": 2
+   },
+   \{
+     \"timeseriesId\": \"com.dynatrace.builtin:docker.container.memory\",
+     \"aggregation\": \"avg\",
+     \"lowerLimit\": 1600000000,
+     \"upperLimit\": 1700000000
+   },
+   \{
+     \"timeseriesId\": \"com.dynatrace.builtin:docker.container.running\",
+     \"aggregation\": \"avg\",
+     \"lowerLimit\": 3,
+     \"upperLimit\": 4
+   },
+   \{
+     \"timeseriesId\": \"com.dynatrace.builtin:host.mem.used\",
+     \"aggregation\": \"avg\",
+     \"lowerLimit\": 3200000000,
+     \"upperLimit\": 4000000000
+   },
+   \{
+     \"timeseriesId\": \"com.dynatrace.builtin:app.custom.apdex\",
+     \"aggregation\": \"count\",
+     \"lowerLimit\": 3,
+     \"upperLimit\": 4
+   },
+   \{
+     \"timeseriesId\": \"com.dynatrace.builtin:appmethod.apdex\",
+     \"aggregation\": \"count\",
+     \"lowerLimit\": 3,
+     \"upperLimit\": 4
+   }
+ ]
+}'
+sh 'echo ' + specfile + ' > test.json'
+
+sh 'echo test.json 
+
+
 def tagMatchRules = [
         [
                 meTypes: [
@@ -85,7 +159,7 @@ pipeline {
        /** stage('Docker Push') {
             steps {
                  echo 'Docker Push!'
-                script {
+                 script {
                     docker.withRegistry('', registryCredential) {
                         dockerImage.push()
                     }
