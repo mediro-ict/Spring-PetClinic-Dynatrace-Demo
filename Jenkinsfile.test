@@ -1,9 +1,13 @@
 #!/usr/bin/env groovy
-import groovy.json.JsonSlurperClassic
+import groovy.json.JsonOutput;
+
+
+ 
+
 def dockerImage
 
-def jsonSlurper = new JsonSlurperClassic()
-      def specfile = jsonSlurper.parseText '''
+
+      def json = JsonOutput.toJson(
      {
   "lowerLimit": 1,
   "upperLimit": 4,
@@ -72,8 +76,9 @@ def jsonSlurper = new JsonSlurperClassic()
       "upperLimit": 4
     }
   ]
-}
-'''
+})
+
+new File("/tmp/output.json").write(json)
 
 //sh 'echo ' + specfile + ' > test.json'
 
