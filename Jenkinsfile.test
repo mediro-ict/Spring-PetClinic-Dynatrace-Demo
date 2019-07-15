@@ -71,11 +71,12 @@ def jsonSlurper = new JsonSlurper()
       "upperLimit": 4
     }
   ]
-}'''
+}
+'''
 
-sh 'echo ' + specfile + ' > test.json'
+//sh 'echo ' + specfile + ' > test.json'
 
-sh 'echo test.json 
+//sh 'echo test.json 
 
 
 def tagMatchRules = [
