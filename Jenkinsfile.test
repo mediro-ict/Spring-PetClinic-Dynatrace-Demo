@@ -1,10 +1,12 @@
 #!/usr/bin/env groovy
 def dockerImage
-/*
-def specfile = '''{
+
+def jsonSlurper = new JsonSlurper()
+      def specfile = jsonSlurper.parseText '''
+     {
   "lowerLimit": 1,
   "upperLimit": 4,
-  "_comment": "global configuration environment-wide",
+  "comment": "global configuration environment-wide",
   "timeseries": [
     {
       "timeseriesId": "com.dynatrace.builtin:service.responsetime",
@@ -73,7 +75,7 @@ def specfile = '''{
 
 sh 'echo ' + specfile + ' > test.json'
 
-sh 'echo test.json */
+sh 'echo test.json 
 
 
 def tagMatchRules = [
