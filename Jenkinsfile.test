@@ -1,8 +1,8 @@
 #!/usr/bin/env groovy
-import groovy.json.JsonSlurper
+import groovy.json.JsonSlurperClassic
 def dockerImage
 
-def jsonSlurper = new JsonSlurper()
+def jsonSlurper = new JsonSlurperClassic()
       def specfile = jsonSlurper.parseText '''
      {
   "lowerLimit": 1,
