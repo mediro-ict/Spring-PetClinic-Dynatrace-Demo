@@ -6,10 +6,10 @@ import groovy.json.JsonOutput;
 
 def dockerImage
 
-
+/*
       def json = JsonOutput.toJson(
      {
-  "lowerLimit": 1,
+     "lowerLimit": 1,
   "upperLimit": 4,
   "comment": "global configuration environment-wide",
   "timeseries": [
@@ -79,7 +79,7 @@ def dockerImage
 })
 
 new File("/tmp/output.json").write(json)
-
+*/
 //sh 'echo ' + specfile + ' > test.json'
 
 //sh 'echo test.json 
