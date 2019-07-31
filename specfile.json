@@ -8,7 +8,8 @@
       "aggregation": "avg",
       "tags": "Frontend",
       "lowerLimit": 250000,
-      "upperLimit": 1000000
+      "upperLimit": 1000000,
+      "upperSevere": 100
     },
     {
       "timeseriesId": "com.dynatrace.builtin:service.responsetime",
@@ -27,7 +28,7 @@
       "timeseriesId": "com.dynatrace.builtin:service.failurerate",
       "aggregation": "avg",
       "lowerLimit": 0,
-      "upperLimit": 35
+      "upperLimit": 30
     },
     {
       "timeseriesId": "com.dynatrace.builtin:service.requestspermin",
