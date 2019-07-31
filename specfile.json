@@ -9,14 +9,14 @@
       "tags": "Frontend",
       "lowerLimit": 250000,
       "upperLimit": 3,
-      "upperSevere": 4
+      "upperSevere": 10
     },
     {
       "timeseriesId": "com.dynatrace.builtin:service.responsetime",
       "aggregation": "avg",
       "entityIds": "SERVICE-65778F58A66834D8",
       "upperWarning": 3,
-      "upperSevere": 4
+      "upperSevere": 10
     },
     {
       "timeseriesId": "com.dynatrace.builtin:docker.container.cpu",
