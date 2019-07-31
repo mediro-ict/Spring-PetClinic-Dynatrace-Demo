@@ -8,21 +8,21 @@
       "aggregation": "avg",
       "tags": "Frontend",
       "lowerLimit": 250000,
-      "upperLimit": 1000000,
-      "upperSevere": 100
+      "upperLimit": 3,
+      "upperSevere": 4
     },
     {
       "timeseriesId": "com.dynatrace.builtin:service.responsetime",
       "aggregation": "avg",
       "entityIds": "SERVICE-65778F58A66834D8",
-      "lowerLimit": 4000000,
-      "upperLimit": 8000000
+      "upperWarning": 3,
+      "upperSevere": 4
     },
     {
       "timeseriesId": "com.dynatrace.builtin:docker.container.cpu",
       "aggregation": "avg",
-      "lowerLimit": 50,
-      "upperLimit": 70
+      "upperLimit": 70,
+      "upperSevere": 100
     },
     {
       "timeseriesId": "com.dynatrace.builtin:service.failurerate",
