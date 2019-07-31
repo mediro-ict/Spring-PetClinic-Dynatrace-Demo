@@ -68,7 +68,7 @@ pipeline {
              //   createDynatraceDeploymentEvent(envId: 'cloud', tagMatchRules: tagMatchRules) {
                  createDynatraceDeploymentEvent(entityIds: 
                  [
-                     [$class: 'Application', entityId: 'APPLICATION-EA7C4B59F27D43EB']
+                    [$class: 'Service', entityId: 'SERVICE-6D8644AEFD7A7A5D']
                      
                      ], envId: 'cloud', tagMatchRules: [[meTypes: [[meType: 'SERVICE']], tags: [[context: 'CONTEXTLESS', key: 'app', value: '"test"']]]]) {
     // some block
