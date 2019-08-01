@@ -6,7 +6,7 @@
     {
       "timeseriesId": "com.dynatrace.builtin:service.responsetime",
       "aggregation": "avg",
-      "tags": "Frontend",
+      "tags": "servername:Tomcat/localhost",
       "lowerLimit": 250000,
       "upperLimit": 3,
       "upperSevere": 10
