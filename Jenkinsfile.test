@@ -16,13 +16,6 @@ def tagMatchRules = [
                 tags   : [
                         [context: 'CONTEXTLESS', key: 'Frontend']
                 ]
-        ], [
-                meTypes: [
-                        [meType: 'SERVICE']
-                ],
-                tags   : [
-                        [context: 'CONTEXTLESS', key: 'Database']
-                ]
         ]
 
         
@@ -73,7 +66,7 @@ pipeline {
         stage('Deploy to Staging Server') {
             steps {
              //   createDynatraceDeploymentEvent(envId: 'cloud', tagMatchRules: tagMatchRules) {
-                    createDynatraceDeploymentEvent(entityIds:[[$class: 'Service', entityId: 'SERVICE-6D8644AEFD7A7A5D']],envId: 'cloud', tagMatchRules: [[meTypes: [[meType: 'SERVICE']], tags: [[context: 'CONTEXTLESS', key: 'Frontend']]], [meTypes: [[meType: 'SERVICE']], tags: [[context: 'CONTEXTLESS', key: 'Database']]]]) {
+                    createDynatraceDeploymentEvent(envId: 'cloud', tagMatchRules: [[meTypes: [[meType: 'SERVICE']], tags: [[context: 'CONTEXTLESS', key: 'Frontend', value: 'Tomcat/localhost']]]]) {
                         sh 'docker-compose down'
                         sh 'docker-compose up -d'
                     }
@@ -82,7 +75,7 @@ pipeline {
         }
         stage('Performance Test') {
             steps {
-                recordDynatraceSession(entityIds: [[$class: 'Service', entityId: 'SERVICE-6D8644AEFD7A7A5D']], envId: 'cloud', testCase: 'loadtest') {
+                recordDynatraceSession(envId: 'cloud', testCase: 'loadtest',tagMatchRules: [[meTypes: [[meType: 'SERVICE']], tags: [[context: 'CONTEXTLESS', key: 'Frontend', value: 'Tomcat/localhost']]]]) {
                 //    performanceTest(readFile('performanceTest.json'))
                      bzt "blaze.yml"
                 }
