@@ -7,9 +7,18 @@
 def dockerImage
 
 
+//env.tagMatchRules
 
-
-def tagMatchRules = env.tagMatchRules
+def tagMatchRules =  [
+    [
+        meTypes: [
+            [meType: 'SERVICE']
+        ], 
+            tags: [
+                [context: 'CONTEXTLESS', key: 'servername', value: 'Tomcat/localhost']
+            ]
+    ]
+]
 
 pipeline {
     environment {
