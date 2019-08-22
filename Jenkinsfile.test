@@ -9,7 +9,7 @@ def dockerImage
 
 //env.tagMatchRules
 
-def tagMatchRules = tolist(params.tagMatchRules)
+def tagMatchRules = params.tagMatchRules as list
 
 
 
