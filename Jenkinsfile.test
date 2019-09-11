@@ -70,7 +70,7 @@ pipeline {
             steps {
              //   createDynatraceDeploymentEvent(envId: 'cloud', tagMatchRules: tagMatchRules) {
                     createDynatraceDeploymentEvent(envId: 'cloud', tagMatchRules: tagMatchRules) {
-                        sh 'docker-compose down'
+                        //sh 'docker-compose down'
                         sh 'docker-compose up -d'
                     }
            
