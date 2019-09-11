@@ -38,7 +38,7 @@ pipeline {
         timestamps()
         timeout(30)
         disableConcurrentBuilds()
-        buildDiscarder logRotator(numToKeepStr: '5')
+        buildDiscarder logRotator(numToKeepStr: '10')
     }
     triggers {
         cron '@daily'
