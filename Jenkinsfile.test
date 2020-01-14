@@ -12,8 +12,7 @@ def dockerImage
 //def tagMatchRules = Eval.me(params.tagMatchRules)
 
 //def tagMatchRule = readFile('$workspace/testMatchRules.txt')
-
-def tagMatchRules 
+//def tagMatchRules 
  /*[
     [
         meTypes: [
@@ -30,7 +29,7 @@ pipeline {
     registry = "leonvzd/spring-petclinic:latest"
     registryCredential = 'dockerHubCredentials'
     dockerImage = ''
-    tagMatchRules = Eval.me(readFile('testMatchRules.txt'))
+    
 
   }
     agent {
@@ -71,6 +70,7 @@ pipeline {
         }
         stage('Deploy to Staging Server') {
             steps {
+                def tagMatchRule = readFile('testMatchRules.txt')
                 echo tagMatchRules
                 script {
              //   createDynatraceDeploymentEvent(envId: 'cloud', tagMatchRules: tagMatchRules) {
