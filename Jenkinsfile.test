@@ -70,7 +70,7 @@ pipeline {
         }
         stage('Deploy to Staging Server') {
             steps {
-                def tagMatchRule = readFile('testMatchRules.txt')
+                def tagMatchRules = readFile('testMatchRules.txt')
                 echo tagMatchRules
                 script {
              //   createDynatraceDeploymentEvent(envId: 'cloud', tagMatchRules: tagMatchRules) {
