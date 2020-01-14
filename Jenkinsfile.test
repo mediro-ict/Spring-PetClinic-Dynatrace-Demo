@@ -13,7 +13,7 @@ def dockerImage
 
 //def tagMatchRule = readFile('$workspace/testMatchRules.txt')
 
-def tagMatchRule 
+def tagMatchRules 
  /*[
     [
         meTypes: [
@@ -30,7 +30,7 @@ pipeline {
     registry = "leonvzd/spring-petclinic:latest"
     registryCredential = 'dockerHubCredentials'
     dockerImage = ''
-    tagMatchRule = Eval.me(readFile('testMatchRules.txt'))
+    tagMatchRules = Eval.me(readFile('testMatchRules.txt'))
 
   }
     agent {
