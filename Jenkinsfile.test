@@ -74,7 +74,7 @@ pipeline {
         }
         stage('Deploy to Staging Server') {
             steps {
-                echo 'dfdf:' agMatchRules
+                echo 'dfdf:' tagMatchRules
              //   createDynatraceDeploymentEvent(envId: 'cloud', tagMatchRules: tagMatchRules) {
                     createDynatraceDeploymentEvent(envId: 'cloud', tagMatchRules: tagMatchRules) {
                         //sh 'docker-compose down'
