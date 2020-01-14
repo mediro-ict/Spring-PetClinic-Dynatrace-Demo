@@ -71,21 +71,26 @@ pipeline {
         }
         stage('Deploy to Staging Server') {
             steps {
+                echo tagMatchRules
+                script {
              //   createDynatraceDeploymentEvent(envId: 'cloud', tagMatchRules: tagMatchRules) {
                     createDynatraceDeploymentEvent(envId: 'cloud', tagMatchRules: ${tagMatchRules}) {
                         //sh 'docker-compose down'
                         sh 'docker-compose up -d'
                     }
-           
+                }
             }
         }
         stage('Performance Test') {
             steps {
+
+                script {
                 recordDynatraceSession(envId: 'cloud', testCase: 'loadtest',tagMatchRules: ${tagMatchRules}) {
                 //    performanceTest(readFile('performanceTest.json'))
                      bzt "blaze.yml"
                 }
                 perfSigDynatraceReports envId: 'cloud', specFile: 'specfile.json', nonFunctionalFailure: 2
+                }  
             }
         }
        /** stage('Docker Push') {
