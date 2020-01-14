@@ -13,11 +13,9 @@ def dockerImage
 
 //def tagMatchRules = Eval.me(params.tagMatchRules)
 
-def tagMatchRules = Eval.me(readFile('testMatchRules.txt')) 
+def tagMatchRules 
 echo tagMatchRules
 
-
-def tagMatchRules
  /*[
     [
         meTypes: [
