@@ -1,6 +1,6 @@
 #!/usr/bin/env groovy
 
-
+ parameters: [file(name: "$workspace/testMatchRules.txt")]
 
  
 
@@ -9,9 +9,9 @@ def dockerImage
 
 //env.tagMatchRules
 
-def tagMatchRules = Eval.me(params.tagMatchRules)
+//def tagMatchRules = Eval.me(params.tagMatchRules)
 
-
+def tagMatchRule = readFile('$workspace/testMatchRules.txt')
 
  /*[
     [

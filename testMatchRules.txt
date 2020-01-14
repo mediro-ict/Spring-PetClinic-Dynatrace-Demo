@@ -1,0 +1,18 @@
+ [
+    [
+        meTypes: [
+            [meType: 'SERVICE']
+        ], 
+            tags: [
+                [context: 'CONTEXTLESS', key: 'WebServiceName', value: 'Tomcat/localhost']
+            ],
+          meTypes: [
+            [meType: 'SERVICE']
+        ], 
+            tags: [
+                [context: 'CONTEXTLESS', key: 'WebServiceName', value: 'MockServletContext']
+            ],
+       
+
+    ]
+]
