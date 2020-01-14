@@ -1,6 +1,6 @@
 #!/usr/bin/env groovy
 
-
+ parameters: [file(name: "$workspace/testMatchRules.txt")]
 
  
 
@@ -9,10 +9,9 @@ def dockerImage
 
 //env.tagMatchRules
 
-def tagMatchRules = Eval.me(params.tagMatchRules)
+//def tagMatchRules = Eval.me(params.tagMatchRules)
 
-
-
+def tagMatchRule 
  /*[
     [
         meTypes: [
@@ -29,6 +28,8 @@ pipeline {
     registry = "leonvzd/spring-petclinic:latest"
     registryCredential = 'dockerHubCredentials'
     dockerImage = ''
+    tagMatchRule = readFile('testMatchRules.txt')
+
   }
     agent {
         label 'docker'
