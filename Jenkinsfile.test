@@ -29,7 +29,7 @@ pipeline {
     registry = "leonvzd/spring-petclinic:latest"
     registryCredential = 'dockerHubCredentials'
     dockerImage = ''
-    tagMatchRules = Eval.me(readFile('testMatchRules.txt'))
+    List tagMatchRules = Eval.me(readFile('testMatchRules.txt'))
 
   }
     agent {
