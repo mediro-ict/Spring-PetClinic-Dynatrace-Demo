@@ -74,7 +74,7 @@ pipeline {
                 echo tagMatchRules
                 script {
              //   createDynatraceDeploymentEvent(envId: 'cloud', tagMatchRules: tagMatchRules) {
-                    createDynatraceDeploymentEvent(envId: 'cloud', tagMatchRules: ${tagMatchRules}) {
+                    createDynatraceDeploymentEvent(envId: 'cloud', tagMatchRules:${env.tagMatchRules}) {
                         //sh 'docker-compose down'
                         sh 'docker-compose up -d'
                     }
@@ -85,7 +85,7 @@ pipeline {
             steps {
 
                 script {
-                recordDynatraceSession(envId: 'cloud', testCase: 'loadtest',tagMatchRules: ${tagMatchRules}) {
+                recordDynatraceSession(envId: 'cloud', testCase: 'loadtest',tagMatchRules:${env.tagMatchRules}) {
                 //    performanceTest(readFile('performanceTest.json'))
                      bzt "blaze.yml"
                 }
