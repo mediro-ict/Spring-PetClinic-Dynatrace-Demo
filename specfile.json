@@ -14,7 +14,7 @@
     {
       "timeseriesId": "com.dynatrace.builtin:service.responsetime",
       "aggregation": "avg",
-      "tags": "Requests executed in background threads of ApacheJMeter.jar",
+      "tags": "WebServiceName:Requests executed in background threads of ApacheJMeter.jar",
       "upperWarning": 3,
       "upperSevere": 5000
     },
