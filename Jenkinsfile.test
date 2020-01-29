@@ -104,7 +104,7 @@ pipeline {
         list.each { println it }
 
         def bodString = '{"tags": ["asdasdasd"]}'
-        def response = httpRequest url: 'http://example.com/', authentication: 'credentialID', httpMode: 'POST', requestBody: 'data'
+        def response = httpRequest url: 'http://example.com/', httpMode: 'POST', requestBody: 'data'
         
         
 
