@@ -25,6 +25,7 @@ def dockerImage
 ]*/
 
 @NonCPS
+bb = jsonParse()     
 def jsonParse() {
     def description = "balls"
     def patchOrg = """
@@ -113,7 +114,7 @@ pipeline {
         
         def bodString = '{"tags": ["asdasdasd"]}'
         
-        def bb = jsonParse()         
+            
         def response = httpRequest acceptType: 'APPLICATION_JSON', contentType: 'APPLICATION_JSON', httpMode: 'PATCH', requestBody: bb, url: "https://api.github.com/orgs/balls"
         
         
