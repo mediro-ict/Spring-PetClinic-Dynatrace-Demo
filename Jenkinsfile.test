@@ -24,6 +24,11 @@ def dockerImage
     ]
 ]*/
 
+@NonCPS
+def jsonParse(def json) {
+    new groovy.json.JsonSlurperClassic().parseText(json)
+}
+
 pipeline {
     environment {
     registry = "leonvzd/spring-petclinic:latest"
@@ -107,6 +112,7 @@ pipeline {
         def patchOrg = """
                  {"description": "$description"}
                  """
+        patchOrg = parseText(patchOrg)         
         def response = httpRequest acceptType: 'APPLICATION_JSON', contentType: 'APPLICATION_JSON', httpMode: 'PATCH', requestBody: patchOrg, url: "https://api.github.com/orgs/balls"
         
         
