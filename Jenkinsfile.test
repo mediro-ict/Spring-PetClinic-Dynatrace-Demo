@@ -103,12 +103,7 @@ pipeline {
          // Print them out to make sure
         list.each { println it }
 
-        def bod = 
-            '''{
-            "tags": [
-             "${env.SIMULATION_CLASS}"
-              ]
-            }'''
+        def bod = '''{"tags": ["${env.SIMULATION_CLASS}"]}'''
 
         List tags = list.tags
         if (tags.contains(env.SIMULATION_CLASS)){
