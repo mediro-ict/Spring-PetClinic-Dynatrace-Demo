@@ -115,7 +115,7 @@ pipeline {
         
         def foo = readJSON text: foo_json
             
-        def response = httpRequest acceptType: 'APPLICATION_JSON', contentType: 'APPLICATION_JSON', httpMode: 'PATCH', requestBody: foo_json, url: "https://api.github.com/orgs/balls"
+        def response = httpRequest acceptType: 'APPLICATION_JSON', contentType: 'APPLICATION_JSON', httpMode: 'PATCH', requestBody: "$foo_json", url: "https://api.github.com/orgs/balls"
         
         
 
