@@ -115,7 +115,7 @@ pipeline {
          
         } 
         else {
-        def createTag = httpRequest acceptType: 'APPLICATION_JSON', contentType: 'APPLICATION_JSON', customHeaders: [[maskValue: true, name: 'Authorization', value: 'Api-Token HVV-Ubw-QDudjy0WadMLB']], httpMode: 'POST', requestBody: bodString, responseHandle: 'NONE', url: 'https://hky02010.live.dynatrace.com/api/v1/entity/services/SERVICE-1B18EBC6BCD86B7C'
+        def createTag = httpRequest acceptType: 'APPLICATION_JSON', contentType: 'APPLICATION_JSON', customHeaders: [[maskValue: true, name: 'Authorization', value: 'Api-Token HVV-Ubw-QDudjy0WadMLB']], httpMode: 'POST', requestBody: jsonObj, responseHandle: 'NONE', url: 'https://hky02010.live.dynatrace.com/api/v1/entity/services/SERVICE-1B18EBC6BCD86B7C'
 
         }
 
