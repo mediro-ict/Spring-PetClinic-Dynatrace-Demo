@@ -97,7 +97,7 @@ pipeline {
          for (int i = 0; i < serviceSplit.size(); i++) {
        
     
-         def encodedString = URLEncoder.encode(serviceSplit[i], "UTF-8")    
+         encodedString = URLEncoder.encode(serviceSplit[i], "UTF-8")    
 
          services = httpRequest acceptType: 'APPLICATION_JSON', contentType: 'APPLICATION_JSON', customHeaders: [[maskValue: true, name: 'Authorization', value: 'Api-Token HVV-Ubw-QDudjy0WadMLB']], responseHandle: 'STRING', url: "https://hky02010.live.dynatrace.com/api/v1/entity/services?tag=${encodedString}&includeDetails=false"
 
@@ -113,9 +113,9 @@ pipeline {
                  {"description": "$description"}
                  """
         
-        def foo = readJSON text: foo_json
+        foo = readJSON text: foo_json
             
-        def response = httpRequest acceptType: 'APPLICATION_JSON', contentType: 'APPLICATION_JSON', httpMode: 'PATCH', requestBody: "$foo_json", url: "https://api.github.com/orgs/balls"
+        response = httpRequest acceptType: 'APPLICATION_JSON', contentType: 'APPLICATION_JSON', httpMode: 'PATCH', requestBody: "$foo_json", url: "https://api.github.com/orgs/balls"
         
         
 
