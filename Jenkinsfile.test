@@ -86,6 +86,7 @@ pipeline {
          The stage will connect to the Dynatrace API check that the services being tested from the SIMULATION_SERVICES job parameter are 
          tagged with the Jenkins Jobname. If the Tag does not exist it will tag the service specified with the Jenkins Jobname.
          */
+         steps {
          def services = httpRequest acceptType: 'APPLICATION_JSON', contentType: 'APPLICATION_JSON', customHeaders: [[maskValue: true, name: 'Authorization', value: 'Api-Token oN43XTDaTPC8pTBfygxEf']], responseHandle: 'STRING', url: 'https://gtn866.dynatrace-managed.com/e/5938dff2-94b9-4ffd-b14d-f2de4daa7dfb/api/v1/entity/services?tag=WebServiceName%3ACreateEventRestProvider&includeDetails=false'
 
          println services.contents
@@ -93,6 +94,7 @@ pipeline {
 
          // Print them out to make sure
         list.each { println it }
+         }
         }
         stage('Performance Test') {
             steps {
