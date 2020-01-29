@@ -103,7 +103,7 @@ pipeline {
          // Print them out to make sure
         list.each { println it }
 
-        def bodString = '{"tags": ["asdasdasd"]}''
+        def bodString = '{"tags": ["asdasdasd"]}'
 
         
         
