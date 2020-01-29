@@ -24,15 +24,15 @@ def dockerImage
     ]
 ]*/
 
-
-
-pipeline {
-    @NonCPS
+@NonCPS
 def jsonParse() {
     def description = "balls"
     def patchOrg = """
                  {"description": "$description"}
                  """
+    return patchOrg
+pipeline {
+
 
 }
     environment {
