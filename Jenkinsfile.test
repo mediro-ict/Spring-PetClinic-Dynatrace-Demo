@@ -24,17 +24,11 @@ def dockerImage
     ]
 ]*/
 
-@NonCPS
-def jsonParse() {
-    def description = "balls"
-    def patchOrg = """
-                 {"description": "$description"}
-                 """
-    return patchOrg
+
 pipeline {
 
 
-}
+
     environment {
     registry = "leonvzd/spring-petclinic:latest"
     registryCredential = 'dockerHubCredentials'
@@ -169,4 +163,12 @@ pipeline {
         } **/
     }
    
+}
+@NonCPS
+def jsonParse() {
+    def description = "balls"
+    def patchOrg = """
+                 {"description": "$description"}
+                 """
+    return patchOrg
 }
