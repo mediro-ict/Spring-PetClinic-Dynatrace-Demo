@@ -25,8 +25,11 @@ def dockerImage
 ]*/
 
 @NonCPS
-def jsonParse(def json) {
-    new groovy.json.JsonSlurperClassic().parseText(json)
+def jsonParse() {
+    def description = "balls"
+    def patchOrg = """
+                 {"description": "$description"}
+                 """
 }
 
 pipeline {
@@ -107,13 +110,11 @@ pipeline {
 
          // Print them out to make sure
         list.each { println it }
-        def description = "balls"
+        
         def bodString = '{"tags": ["asdasdasd"]}'
-        def patchOrg = """
-                 {"description": "$description"}
-                 """
-        patchOrg = jsonParse(patchOrg)         
-        def response = httpRequest acceptType: 'APPLICATION_JSON', contentType: 'APPLICATION_JSON', httpMode: 'PATCH', requestBody: patchOrg, url: "https://api.github.com/orgs/balls"
+        
+        def bb = jsonParse()         
+        def response = httpRequest acceptType: 'APPLICATION_JSON', contentType: 'APPLICATION_JSON', httpMode: 'PATCH', requestBody: bb, url: "https://api.github.com/orgs/balls"
         
         
 
