@@ -24,16 +24,17 @@ def dockerImage
     ]
 ]*/
 
-@NonCPS
-bb = jsonParse()     
+
+
+pipeline {
+    @NonCPS
 def jsonParse() {
     def description = "balls"
     def patchOrg = """
                  {"description": "$description"}
                  """
-}
 
-pipeline {
+}
     environment {
     registry = "leonvzd/spring-petclinic:latest"
     registryCredential = 'dockerHubCredentials'
@@ -115,7 +116,7 @@ pipeline {
         def bodString = '{"tags": ["asdasdasd"]}'
         
             
-        def response = httpRequest acceptType: 'APPLICATION_JSON', contentType: 'APPLICATION_JSON', httpMode: 'PATCH', requestBody: bb, url: "https://api.github.com/orgs/balls"
+        def response = httpRequest acceptType: 'APPLICATION_JSON', contentType: 'APPLICATION_JSON', httpMode: 'PATCH', requestBody: jsonParse(), url: "https://api.github.com/orgs/balls"
         
         
 
@@ -167,10 +168,5 @@ pipeline {
             }
         } **/
     }
-    post {
-        always {
-          echo 'done!'  
-//          step([$class: 'Mailer', notifyEveryUnstableBuild: true, recipients: 'notify@me', sendToIndividuals: false])
-        }
-    }
+   
 }
