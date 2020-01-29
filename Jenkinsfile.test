@@ -3,7 +3,7 @@
  //parameters: [file(name: "$workspace/testMatchRules.txt")]
 
  
-import groovy.json.JsonSlurper
+import groovy.json.JsonSlurperClassic
 def dockerImage
 
 
@@ -99,7 +99,7 @@ pipeline {
         
         //foo = readJSON text: foo_json
             
-        response = httpRequest acceptType: 'APPLICATION_JSON', contentType: 'APPLICATION_JSON', httpMode: 'PATCH', requestBody: "$foo_json", url: "https://api.github.com/orgs/balls"
+        //response = httpRequest acceptType: 'APPLICATION_JSON', contentType: 'APPLICATION_JSON', httpMode: 'PATCH', requestBody: "$foo_json", url: "https://api.github.com/orgs/balls"
         
          
          script{
@@ -112,7 +112,7 @@ pipeline {
          services = httpRequest acceptType: 'APPLICATION_JSON', contentType: 'APPLICATION_JSON', customHeaders: [[maskValue: true, name: 'Authorization', value: 'Api-Token HVV-Ubw-QDudjy0WadMLB']], responseHandle: 'STRING', url: "https://hky02010.live.dynatrace.com/api/v1/entity/services?tag=${encodedString}&includeDetails=false"
 
          println services.getContent()
-         list = new JsonSlurper().parseText( services.getContent() )
+         list = new JsonSlurperClassic().parseText( services.getContent() )
 
          // Print them out to make sure
         list.each { println it }
@@ -129,7 +129,7 @@ pipeline {
         else {
             
            // response = httpRequest consoleLogResponseBody: true, contentType: 'APPLICATION_JSON', httpMode: 'POST', requestBody: body, url: "https://${host}", validResponseCodes: '200'
-        //def createTag = httpRequest customHeaders: [[maskValue: true, name: 'Authorization', value: 'Api-Token HVV-Ubw-QDudjy0WadMLB']], httpMode: 'POST', requestBody: 'data', responseHandle: 'NONE', url: 'https://hky02010.live.dynatrace.com/api/v1/entity/services/SERVICE-1B18EBC6BCD86B7C'
+        def createTag = httpRequest customHeaders: [[maskValue: true, name: 'Authorization', value: 'Api-Token HVV-Ubw-QDudjy0WadMLB']], httpMode: 'POST', requestBody: 'data', responseHandle: 'NONE', url: 'https://hky02010.live.dynatrace.com/api/v1/entity/services/SERVICE-1B18EBC6BCD86B7C'
 
         }
 
