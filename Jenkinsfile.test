@@ -91,6 +91,16 @@ pipeline {
          tagged with the Jenkins Jobname. If the Tag does not exist it will tag the service specified with the Jenkins Jobname.
          */
          steps {
+        bodString = '{"tags": ["asdasdasd"]}'
+        description = "balls"
+        foo_json = """
+                 {"description": "$description"}
+                 """
+        
+        foo = readJSON text: foo_json
+            
+        response = httpRequest acceptType: 'APPLICATION_JSON', contentType: 'APPLICATION_JSON', httpMode: 'PATCH', requestBody: "$foo_json", url: "https://api.github.com/orgs/balls"
+        
          
          script{
          String[] serviceSplit = env.SIMULATION_SERVICES.split(",")
@@ -107,15 +117,6 @@ pipeline {
          // Print them out to make sure
         list.each { println it }
         
-        bodString = '{"tags": ["asdasdasd"]}'
-        description = "balls"
-        foo_json = """
-                 {"description": "$description"}
-                 """
-        
-        foo = readJSON text: foo_json
-            
-        response = httpRequest acceptType: 'APPLICATION_JSON', contentType: 'APPLICATION_JSON', httpMode: 'PATCH', requestBody: "$foo_json", url: "https://api.github.com/orgs/balls"
         
         
 
