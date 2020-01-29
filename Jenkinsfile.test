@@ -103,7 +103,10 @@ pipeline {
          // Print them out to make sure
         list.each { println it }
 
-        def bod = '''{"tags": ["${env.SIMULATION_CLASS}"]}'''
+        def bodstring = '{"tags": ["${env.SIMULATION_CLASS}"]}'
+
+        
+        def jsonObj = readJSON text: bodString
 
         List tags = list.tags
         if (tags.contains(env.SIMULATION_CLASS)){
@@ -112,7 +115,7 @@ pipeline {
          
         } 
         else {
-        def createTag = httpRequest acceptType: 'APPLICATION_JSON', contentType: 'APPLICATION_JSON', customHeaders: [[maskValue: true, name: 'Authorization', value: 'Api-Token HVV-Ubw-QDudjy0WadMLB']], httpMode: 'POST', requestBody: "${bod}", responseHandle: 'NONE', url: 'https://hky02010.live.dynatrace.com/api/v1/entity/services/SERVICE-1B18EBC6BCD86B7C'
+        def createTag = httpRequest acceptType: 'APPLICATION_JSON', contentType: 'APPLICATION_JSON', customHeaders: [[maskValue: true, name: 'Authorization', value: 'Api-Token HVV-Ubw-QDudjy0WadMLB']], httpMode: 'POST', requestBody: "${bodstring}", responseHandle: 'NONE', url: 'https://hky02010.live.dynatrace.com/api/v1/entity/services/SERVICE-1B18EBC6BCD86B7C'
 
         }
 
