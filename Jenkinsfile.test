@@ -103,7 +103,7 @@ pipeline {
          // Print them out to make sure
         list.each { println it }
 
-        List def tags = list.tags
+        List tags = list.tags
         if (tags.contains(env.SIMULATION_CLASS)){
          
          println("Simulation Class found")
