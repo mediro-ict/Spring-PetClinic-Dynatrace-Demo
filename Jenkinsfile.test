@@ -99,23 +99,23 @@ pipeline {
     
          def encodedString = URLEncoder.encode(serviceSplit[i], "UTF-8")    
 
-         def services = httpRequest acceptType: 'APPLICATION_JSON', contentType: 'APPLICATION_JSON', customHeaders: [[maskValue: true, name: 'Authorization', value: 'Api-Token HVV-Ubw-QDudjy0WadMLB']], responseHandle: 'STRING', url: "https://hky02010.live.dynatrace.com/api/v1/entity/services?tag=${encodedString}&includeDetails=false"
+         services = httpRequest acceptType: 'APPLICATION_JSON', contentType: 'APPLICATION_JSON', customHeaders: [[maskValue: true, name: 'Authorization', value: 'Api-Token HVV-Ubw-QDudjy0WadMLB']], responseHandle: 'STRING', url: "https://hky02010.live.dynatrace.com/api/v1/entity/services?tag=${encodedString}&includeDetails=false"
 
          println services.getContent()
-         def list = new JsonSlurper().parseText( services.getContent() )
+         list = new JsonSlurper().parseText( services.getContent() )
 
          // Print them out to make sure
         list.each { println it }
         
-        def bodString = '{"tags": ["asdasdasd"]}'
-        def description = "balls"
-              def foo_json = """
+        bodString = '{"tags": ["asdasdasd"]}'
+        description = "balls"
+        foo_json = """
                  {"description": "$description"}
                  """
         
         def foo = readJSON text: foo_json
             
-        def response = httpRequest acceptType: 'APPLICATION_JSON', contentType: 'APPLICATION_JSON', httpMode: 'PATCH', requestBody: foo, url: "https://api.github.com/orgs/balls"
+        def response = httpRequest acceptType: 'APPLICATION_JSON', contentType: 'APPLICATION_JSON', httpMode: 'PATCH', requestBody: foo_json, url: "https://api.github.com/orgs/balls"
         
         
 
