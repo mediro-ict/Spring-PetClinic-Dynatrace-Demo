@@ -108,7 +108,12 @@ pipeline {
         list.each { println it }
         
         def bodString = '{"tags": ["asdasdasd"]}'
+        def description = "balls"
+              def foo_json = """
+                 {"description": "$description"}
+                 """
         
+        def foo = readJSON text: foo_json
             
         def response = httpRequest acceptType: 'APPLICATION_JSON', contentType: 'APPLICATION_JSON', httpMode: 'PATCH', requestBody: jsonParse(), url: "https://api.github.com/orgs/balls"
         
@@ -163,12 +168,4 @@ pipeline {
         } **/
     }
    
-}
-@NonCPS
-def jsonParse() {
-    def description = "balls"
-    def patchOrg = """
-                 {"description": "$description"}
-                 """
-    return patchOrg
 }
