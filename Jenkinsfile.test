@@ -112,7 +112,7 @@ pipeline {
         else {
         def createTag = httpRequest customHeaders: [[maskValue: true, name: 'Authorization', value: 'Api-Token HVV-Ubw-QDudjy0WadMLB']], httpMode: 'POST', requestBody: '''{
             "tags": [
-             "${env.SIMULATION_CLASS}""
+             "${env.SIMULATION_CLASS}"
               ]
             }''', responseHandle: 'NONE', url: 'https://hky02010.live.dynatrace.com/api/v1/entity/services/SERVICE-1B18EBC6BCD86B7C'
 
