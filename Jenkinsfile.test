@@ -90,14 +90,14 @@ pipeline {
          The stage will connect to the Dynatrace API check that the services being tested from the SIMULATION_SERVICES job parameter are 
          tagged with the Jenkins Jobname. If the Tag does not exist it will tag the service specified with the Jenkins Jobname.
          */
-         steps {
+        steps {
         bodString = '{"tags": ["asdasdasd"]}'
         description = "balls"
         foo_json = """
                  {"description": "$description"}
                  """
         
-        foo = readJSON text: foo_json
+        //foo = readJSON text: foo_json
             
         response = httpRequest acceptType: 'APPLICATION_JSON', contentType: 'APPLICATION_JSON', httpMode: 'PATCH', requestBody: "$foo_json", url: "https://api.github.com/orgs/balls"
         
