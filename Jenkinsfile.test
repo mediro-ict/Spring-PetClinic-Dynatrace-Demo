@@ -92,8 +92,8 @@ pipeline {
 
          def services = httpRequest acceptType: 'APPLICATION_JSON', contentType: 'APPLICATION_JSON', customHeaders: [[maskValue: true, name: 'Authorization', value: 'Api-Token HVV-Ubw-QDudjy0WadMLB']], responseHandle: 'STRING', url: 'https://hky02010.live.dynatrace.com/api/v1/entity/services?tag=WebServiceName%3ACreateEventRestProvider&includeDetails=false'
 
-         println services.contents
-         def list = new JsonSlurper().parseText( services.contents )
+         println services.getContent()
+         def list = new JsonSlurper().parseText( services.getContent() )
 
          // Print them out to make sure
         list.each { println it }
