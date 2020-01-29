@@ -106,7 +106,7 @@ pipeline {
         def bodString = ["tags": ["${env.SIMULATION_CLASS}"]]
 
         
-        def jsonObj = new JsonSlurper().parseText(bodString)
+        
 
         List tags = list.tags
         if (tags.contains(env.SIMULATION_CLASS)){
