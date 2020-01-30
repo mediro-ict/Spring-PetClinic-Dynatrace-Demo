@@ -51,40 +51,7 @@ pipeline {
     }
 
     stages {
-        stage('Maven Build') {
-            steps {
-                script {
-                    docker.image('maven:3-jdk-8-slim').inside {
-                        sh 'mvn clean package --batch-mode'
-                    }
-                }
-//                publishCoverage adapters: [jacocoAdapter('target/jacoco.exec')]
-//                findbugs pattern: '**/target/findbugsXml.xml'
-//                checkstyle pattern: '**/target/checkstyle-result.xml'
-//                junit allowEmptyResults: true, testResults: '**/target/surefire-reports/**/*.xml'
-                archiveArtifacts artifacts: '**/target/*.jar,**/target/*.war', fingerprint: true
-            }
-        }
-        stage('Docker Build') {
-            steps {
-                script {
-                    dockerImage = docker.build registry
-                }
-            }
-        }
-        stage('Deploy to Staging Server') {
-            steps {
-               
-                
-                script {
-             //   createDynatraceDeploymentEvent(envId: 'cloud', tagMatchRules: tagMatchRules) {
-                    createDynatraceDeploymentEvent(envId: 'cloud', tagMatchRules:Eval.me("${env.tagMatchRules}")) {
-                        //sh 'docker-compose down'
-                        sh 'docker-compose up -d'
-                    }
-                }
-            }
-        }
+
         stage('Create Dynatrace Tags'){
          /*This stage is to make sure the performance signature plugin targets the correct services being tested by the gatling scripts
          The stage will connect to the Dynatrace API check that the services being tested from the SIMULATION_SERVICES job parameter are 
@@ -147,6 +114,41 @@ pipeline {
          }
          }
         }
+        stage('Maven Build') {
+            steps {
+                script {
+                    docker.image('maven:3-jdk-8-slim').inside {
+                        sh 'mvn clean package --batch-mode'
+                    }
+                }
+//                publishCoverage adapters: [jacocoAdapter('target/jacoco.exec')]
+//                findbugs pattern: '**/target/findbugsXml.xml'
+//                checkstyle pattern: '**/target/checkstyle-result.xml'
+//                junit allowEmptyResults: true, testResults: '**/target/surefire-reports/**/*.xml'
+                archiveArtifacts artifacts: '**/target/*.jar,**/target/*.war', fingerprint: true
+            }
+        }
+        stage('Docker Build') {
+            steps {
+                script {
+                    dockerImage = docker.build registry
+                }
+            }
+        }
+        stage('Deploy to Staging Server') {
+            steps {
+               
+                
+                script {
+             //   createDynatraceDeploymentEvent(envId: 'cloud', tagMatchRules: tagMatchRules) {
+                    createDynatraceDeploymentEvent(envId: 'cloud', tagMatchRules:Eval.me("${env.tagMatchRules}")) {
+                        //sh 'docker-compose down'
+                        sh 'docker-compose up -d'
+                    }
+                }
+            }
+        }
+        
         stage('Performance Test') {
             steps {
 
