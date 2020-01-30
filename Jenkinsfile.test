@@ -120,9 +120,9 @@ pipeline {
          // Print them out to make sure
         list.each { println it }
         
-        entity_id = list.entityId.value
-        
-
+        entity_id = list.entityId
+        def jsonObj = readJSON text: jsonString
+        print jsonObj.entityId
         List tags = list.tags
         tags.each { println it }
         testenv = tags.key.contains("Test")
@@ -136,7 +136,7 @@ pipeline {
         else {
             println(foo_json) 
            // response = httpRequest consoleLogResponseBody: true, contentType: 'APPLICATION_JSON', httpMode: 'POST', requestBody: body, url: "https://${host}", validResponseCodes: '200'
-        def createTag = httpRequest contentType: 'APPLICATION_JSON_UTF8', customHeaders: [[maskValue: true, name: 'Authorization', value: 'Api-Token HVV-Ubw-QDudjy0WadMLB']], httpMode: 'POST', requestBody: foo_json, responseHandle: 'STRING', url: "https://hky02010.live.dynatrace.com/api/v1/entity/services/${entity_id}"
+        def createTag = httpRequest contentType: 'APPLICATION_JSON_UTF8', customHeaders: [[maskValue: true, name: 'Authorization', value: 'Api-Token HVV-Ubw-QDudjy0WadMLB']], httpMode: 'POST', requestBody: foo_json, responseHandle: 'STRING', url: "https://hky02010.live.dynatrace.com/api/v1/entity/services/${entity_id[0]}"
 
         }
 
