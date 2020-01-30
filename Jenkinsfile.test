@@ -100,9 +100,11 @@ pipeline {
          
          script{
           bodString = '{"tags": ["asdasdasd"]}'
-          description = "balls"
+          class_tag = env.SIMULATION_CLASS
           foo_json = """
-                 {"description": "$description"}
+                 {"tags": [
+                  "$class_tag"
+                  ]}
                  """    
          String[] serviceSplit = env.SIMULATION_SERVICES.split(",")
          for (int i = 0; i < serviceSplit.size(); i++) {
@@ -130,7 +132,7 @@ pipeline {
         else {
             
            // response = httpRequest consoleLogResponseBody: true, contentType: 'APPLICATION_JSON', httpMode: 'POST', requestBody: body, url: "https://${host}", validResponseCodes: '200'
-        def createTag = httpRequest customHeaders: [[maskValue: true, name: 'Authorization', value: 'Api-Token HVV-Ubw-QDudjy0WadMLB']], httpMode: 'POST', requestBody: 'data', responseHandle: 'NONE', url: 'https://hky02010.live.dynatrace.com/api/v1/entity/services/SERVICE-1B18EBC6BCD86B7C'
+        def createTag = httpRequest customHeaders: [[maskValue: true, name: 'Authorization', value: 'Api-Token HVV-Ubw-QDudjy0WadMLB']], httpMode: 'POST', requestBody: foo_json, responseHandle: 'NONE', url: 'https://hky02010.live.dynatrace.com/api/v1/entity/services/SERVICE-1B18EBC6BCD86B7C'
 
         }
 
