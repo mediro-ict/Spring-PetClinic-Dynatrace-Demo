@@ -121,8 +121,8 @@ pipeline {
         list.each { println it }
         
         entity_id = list.entityId
-        def jsonObj = readJSON text: jsonString
-        print jsonObj.entityId
+        def jsonObj = readJSON text: services.getContent()
+        println(jsonObj.entityId)
         List tags = list.tags
         tags.each { println it }
         testenv = tags.key.contains("Test")
