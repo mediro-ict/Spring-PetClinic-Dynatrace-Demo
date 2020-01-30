@@ -89,7 +89,9 @@ pipeline {
         
         entity_id = list.entityId
         def jsonObj = readJSON text: services.getContent()
+        println(entity_id)
         println(jsonObj.entityId)
+        
         List tags = list.tags
         tags.each { println it }
         testenv = tags.key.contains("Test")
