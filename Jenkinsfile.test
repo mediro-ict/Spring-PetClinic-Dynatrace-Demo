@@ -125,6 +125,8 @@ pipeline {
 
         List tags = list.tags
         tags.each { println it }
+        testenv = tags.contains('Test')
+        println(testenv)
         if (tags.contains(env.SIMULATION_CLASS)){
          
          println("Simulation Class found")
