@@ -120,7 +120,7 @@ pipeline {
          // Print them out to make sure
         list.each { println it }
         
-        entity_id = list.entityId
+        entity_id = list.entityId.value
         
 
         List tags = list.tags
