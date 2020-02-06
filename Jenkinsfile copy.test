@@ -1,9 +1,9 @@
-!/usr/bin/env groovy
+#!/usr/bin/env groovy
 
  //parameters: [file(name: "$workspace/testMatchRules.txt")]
 
  
-
+import groovy.json.JsonSlurperClassic
 def dockerImage
 
 
@@ -24,7 +24,11 @@ def dockerImage
     ]
 ]*/
 
+
 pipeline {
+
+
+
     environment {
     registry = "leonvzd/spring-petclinic:latest"
     registryCredential = 'dockerHubCredentials'
@@ -47,6 +51,70 @@ pipeline {
     }
 
     stages {
+
+        stage('Create Dynatrace Tags'){
+         /*This stage is to make sure the performance signature plugin targets the correct services being tested by the gatling scripts
+         The stage will connect to the Dynatrace API check that the services being tested from the SIMULATION_SERVICES job parameter are 
+         tagged with the Jenkins Jobname. If the Tag does not exist it will tag the service specified with the Jenkins Jobname.
+         */
+        steps {
+        
+        
+        //foo = readJSON text: foo_json
+            
+        //response = httpRequest acceptType: 'APPLICATION_JSON', contentType: 'APPLICATION_JSON', httpMode: 'PATCH', requestBody: "$foo_json", url: "https://api.github.com/orgs/balls"
+        
+         
+         script{
+          bodString = '{"tags": ["asdasdasd"]}'
+          class_tag = env.SIMULATION_CLASS
+          foo_json = """
+                 {"tags": [
+                  "$class_tag"
+                  ]}
+                 """    
+         String[] serviceSplit = env.SIMULATION_SERVICES.split(",")
+         for (int i = 0; i < serviceSplit.size(); i++) {
+       
+    
+         encodedString = URLEncoder.encode(serviceSplit[i], "UTF-8")    
+
+         services = httpRequest acceptType: 'APPLICATION_JSON', contentType: 'APPLICATION_JSON', customHeaders: [[maskValue: true, name: 'Authorization', value: 'Api-Token HVV-Ubw-QDudjy0WadMLB']], responseHandle: 'STRING', url: "https://hky02010.live.dynatrace.com/api/v1/entity/services?tag=${encodedString}&includeDetails=false"
+
+         println services.getContent()
+         list = new JsonSlurperClassic().parseText( services.getContent() )
+
+         // Print them out to make sure
+        list.each { println it }
+        
+        entity_id = list.entityId
+        def jsonObj = readJSON text: services.getContent()
+      
+        
+        List tags = list.tags
+        tags.each { println it }
+        testenv = tags.key.contains("Test")
+        println(tags.key)
+        println(testenv)
+        if (tags.contains(env.SIMULATION_CLASS)){
+         
+         println("Simulation Class found")
+         
+        } 
+        else {
+            println(foo_json) 
+           // response = httpRequest consoleLogResponseBody: true, contentType: 'APPLICATION_JSON', httpMode: 'POST', requestBody: body, url: "https://${host}", validResponseCodes: '200'
+        def createTag = httpRequest contentType: 'APPLICATION_JSON_UTF8', customHeaders: [[maskValue: true, name: 'Authorization', value: 'Api-Token HVV-Ubw-QDudjy0WadMLB']], httpMode: 'POST', requestBody: foo_json, responseHandle: 'STRING', url: "https://hky02010.live.dynatrace.com/api/v1/entity/services/${entity_id[0]}"
+
+        }
+
+        println(tags)   
+
+
+         }
+         }
+         }
+        }
         stage('Maven Build') {
             steps {
                 script {
@@ -71,7 +139,7 @@ pipeline {
         stage('Deploy to Staging Server') {
             steps {
                
-                echo tagMatchRules
+                
                 script {
              //   createDynatraceDeploymentEvent(envId: 'cloud', tagMatchRules: tagMatchRules) {
                     createDynatraceDeploymentEvent(envId: 'cloud', tagMatchRules:Eval.me("${env.tagMatchRules}")) {
@@ -81,6 +149,7 @@ pipeline {
                 }
             }
         }
+        
         stage('Performance Test') {
             steps {
 
@@ -109,10 +178,5 @@ pipeline {
             }
         } **/
     }
-    post {
-        always {
-          echo 'done!'  
-//          step([$class: 'Mailer', notifyEveryUnstableBuild: true, recipients: 'notify@me', sendToIndividuals: false])
-        }
-    }
+   
 }
