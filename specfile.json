@@ -6,25 +6,12 @@
     {
       "timeseriesId": "com.dynatrace.builtin:service.responsetime",
       "aggregation": "avg",
-      "tags": "WebServiceName:Tomcat/localhost",
+      "tags": "WebServiceName:Tomcat/localhost,processgroup:Process spring-petclinic.jar",
       "lowerLimit": 250000,
       "upperLimit": 3,
       "upperSevere": 5000
     },
-    {
-      "timeseriesId": "com.dynatrace.builtin:service.responsetime",
-      "aggregation": "avg",
-      "tags": "WebServiceName:Requests executed in background threads of ApacheJMeter.jar",
-      "upperWarning": 3,
-      "upperSevere": 5000
-    },
-    {
-      "timeseriesId": "com.dynatrace.builtin:service.responsetime",
-      "aggregation": "avg",
-      "tags": "WebServiceName:MockServletContext",
-      "upperWarning": 3,
-      "upperSevere": 5000
-    },
+    
     {
       "timeseriesId": "com.dynatrace.builtin:docker.container.cpu",
       "aggregation": "avg",
@@ -64,12 +51,6 @@
     },
     {
       "timeseriesId": "com.dynatrace.builtin:app.custom.apdex",
-      "aggregation": "count",
-      "lowerLimit": 3,
-      "upperLimit": 4
-    },
-    {
-      "timeseriesId": "com.dynatrace.builtin:appmethod.apdex",
       "aggregation": "count",
       "lowerLimit": 3,
       "upperLimit": 4
