@@ -3,15 +3,14 @@
   "upperLimit": 4,
   "_comment": "global configuration environment-wide",
   "timeseries": [
+    
     {
       "timeseriesId": "com.dynatrace.builtin:service.responsetime",
       "aggregation": "avg",
-      "tags": "WebServiceName:Tomcat/localhost",
-      "lowerLimit": 1,
-      "upperLimit": 3000,
+      "tags": "WebServiceName:Tomcat/localhost,processgroup:Process spring-petclinic.jar",
+      "upperWarning": 3000,
       "upperSevere": 5000
     },
-    
     {
       "timeseriesId": "com.dynatrace.builtin:docker.container.cpu",
       "aggregation": "avg",
@@ -20,13 +19,12 @@
     {
       "timeseriesId": "com.dynatrace.builtin:service.failurerate",
       "aggregation": "avg",
-      "tags": "WebServiceName:Tomcat/localhost,processgroup:Process spring-petclinic.jar",
+      "lowerLimit": 0,
       "upperLimit": 30
     },
     {
       "timeseriesId": "com.dynatrace.builtin:service.requestspermin",
       "aggregation": "min",
-      "tags": "WebServiceName:Tomcat/localhost,processgroup:Process spring-petclinic.jar",
       "lowerLimit": 5,
       "upperLimit": 2
     },
@@ -50,6 +48,12 @@
     },
     {
       "timeseriesId": "com.dynatrace.builtin:app.custom.apdex",
+      "aggregation": "count",
+      "lowerLimit": 3,
+      "upperLimit": 4
+    },
+    {
+      "timeseriesId": "com.dynatrace.builtin:appmethod.apdex",
       "aggregation": "count",
       "lowerLimit": 3,
       "upperLimit": 4
