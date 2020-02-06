@@ -6,7 +6,7 @@
     {
       "timeseriesId": "com.dynatrace.builtin:service.responsetime",
       "aggregation": "avg",
-      "tags": "WebServiceName:Tomcat/localhost,processgroup:Process spring-petclinic.jar",
+      "tags": "WebServiceName:Tomcat/localhost",
       "lowerLimit": 1,
       "upperLimit": 3000,
       "upperSevere": 5000
