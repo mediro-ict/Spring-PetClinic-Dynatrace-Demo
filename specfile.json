@@ -7,8 +7,8 @@
     {
       "timeseriesId": "com.dynatrace.builtin:service.responsetime",
       "aggregation": "avg",
-      "upperWarning": 3000,
-      "upperSevere": 5000
+      "upperWarning": 1000,
+      "upperSevere": 2000
     },
     {
       "timeseriesId": "com.dynatrace.builtin:docker.container.cpu",
