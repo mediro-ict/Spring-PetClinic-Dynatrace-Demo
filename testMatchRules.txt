@@ -11,13 +11,8 @@
         ], 
             tags: [
                 [context: 'CONTEXTLESS', key: 'WebServiceName', value: 'MockServletContext']
-            ],
-       meTypes: [
-            [meType: 'SERVICE']
-        ], 
-            tags: [
-                [context: 'CONTEXTLESS', key: 'WebServiceName', value: 'Requests executed in background threads of ApacheJMeter.jar']
             ]
+       
 
     ]
 ]
